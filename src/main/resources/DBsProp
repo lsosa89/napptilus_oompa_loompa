@@ -1,0 +1,29 @@
+
+//Mariadb
+spring.datasource.url=jdbc:mariadb://172.17.0.2:3306/db_test
+spring.datasource.username=root
+spring.datasource.password=root
+spring.datasource.driver-class-name=org.mariadb.jdbc.Driver
+spring.jpa.hibernate.ddl-auto=update
+
+
+
+
+//H2
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=password
+spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+
+
+//creating docker image
+sudo docker build -t spring/napptilus_h2  .
+
+//export image
+sudo docker image save -o  napptilus_h2.tar spring/napptilus_h2
+
+
+// to execute image
+sudo docker run -p 8080:8080 spring/napptilus_h2 --server.port=8080
+
